@@ -1,22 +1,28 @@
 import express from 'express';
-  import AccountsController from '../controllers';
+import AccountsController from '../controllers';
+import ValidationController from '../controllers/ValidationController'; //add to import statements at top of file
 
-  const createRouter = (dependencies) => {
-      const router = express.Router();
-      // load controller with dependencies
-      const accountsController = AccountsController(dependencies);
-      router.route('/')
-          .post(accountsController.createAccount);
+const createRouter = (dependencies) => {
+    const router = express.Router();
+    // load controller with dependencies
+    const accountsController = AccountsController(dependencies);
+    const validationController = ValidationController(dependencies);
 
-          router.route('/')
-          .get(accountsController.listAccounts);
+    // router.route('/')
+    //     .post(accountsController.createAccount);
+    router.route('/')
+        .post(validationController.validateAccount, accountsController.createAccount); //add validateAccount to route
 
-      router.route('/:id')
-          .get(accountsController.getAccount);
+    router.route('/')
+        .get(accountsController.listAccounts);
 
-      router.route('/:id')
-          .post(accountsController.getAccount);
+    router.route('/:id')
+        .get(accountsController.getAccount);
 
-      return router;
-  };
-  export default createRouter;
+    router.route('/:id')
+        .post(accountsController.getAccount);
+
+    
+    return router;
+};
+export default createRouter;
