@@ -13,6 +13,7 @@ import Account from '../../entities/Accounts';
               password: String,
               favourites: [Number]
           });
+          mongoose.models = {};
           this.model = mongoose.model('Account', accountsSchema);
       }
 

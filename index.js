@@ -16,6 +16,7 @@ const port = process.env.PORT;
 
 app.use(express.json());
 app.use('/api/movies', createMoviesRouter(dependencies()));
+app.use('/api/accounts', createAccountsRouter(dependencies()));
 app.use(errorHandler);
 
 app.listen(port, () => {
