@@ -5,8 +5,10 @@ import createMoviesRouter from './src/movies/routes';
 import createAccountsRouter from './src/accounts/routes';
 import dependencies from './src/config/dependencies';
 import errorHandler from './src/utils/ErrorHandler';
+import db from './src/config/db';
 
 dotenv.config();
+db.init(); //add BELOW dotenv.config();
 
 const app = express();
 
