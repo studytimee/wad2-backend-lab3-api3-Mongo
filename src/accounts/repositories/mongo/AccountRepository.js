@@ -12,6 +12,7 @@ import Account from '../../entities/Accounts';
               email: {type: String, unique: true, index: true},
               password: String,
               favourites: [Number]
+              
           });
           mongoose.models = {};
           this.model = mongoose.model('Account', accountsSchema);
